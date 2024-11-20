@@ -594,10 +594,10 @@ services:
 
 
   db:
-    image: mysql:latest
+    image: mysql:lts
     container_name: db
     hostname: db
-    command: --default-authentication-plugin=mysql_native_password
+    command: --mysql-native-password=ON
     restart: always
     cap_add:
       - SYS_NICE
@@ -1385,7 +1385,7 @@ services:
       - "traefik.http.routers.arkime.tls=true"
      
   spiderfoot:
-    image: "dtagdevsec/spiderfoot:2204"
+    image: "dtagdevsec/spiderfoot:24.04"
     container_name: spiderfoot
     hostname: spiderfoot
     restart: always
