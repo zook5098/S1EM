@@ -13,10 +13,9 @@
     endpoint = "unix:///var/run/docker.sock"
     watch = true
     exposedByDefault = false
-    swarmMode = false
+    #swarmMode = false
   [providers.file]
     filename = "/etc/traefik/dyn.toml"
-
 	
 [accessLog]
   filePath = "/tmp/access.log"
@@ -28,4 +27,3 @@
 [entryPoints]
   [entryPoints.secure]
     address = ":443"
-
