@@ -258,7 +258,6 @@ services:
     ports:
       - "5044:5044"
 
-
   fleet-server:
     container_name: fleet-server
     hostname: fleet-server    
@@ -504,7 +503,7 @@ services:
       - s1em
 
   cassandra:
-    image: cassandra:3.11
+    image: cassandra:latest
     container_name: cassandra
     hostname: cassandra
     restart: always
@@ -575,7 +574,7 @@ services:
       - s1em
 
   redis:
-    image: redis:8
+    image: redis:latest
     hostname: redis
     container_name: redis
     restart: always
@@ -1554,9 +1553,17 @@ services:
         max-size: "10m"
         max-file: "3"
     environment:
+      - TZ=America/Chicago
       - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_INCLUDE_RESTARTING=true
+      - WATCHTOWER_INCLUDE_STOPPED=true
+      - WATCHTOWER_REVIVE_STOPPED=true
+      - WATCHTOWER_POLL_INTERVAL=86400
+      - WATCHTOWER_NO_STARTUP_MESSAGE=true
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
     networks:
      - s1em
 
@@ -1570,7 +1577,7 @@ volumes:
    kibanadata:
     external: false
    certs:
-    external: false   
+    external: false
    zeekdata:
     external: false
    zeekfiles:
